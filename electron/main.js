@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
 
@@ -9,10 +9,13 @@ const createWindow = () => {
 		width: 1024,
 		height: 800,
 		show: false,
+		frame: false,
 		webPreferences: {
+			nodeIntegration: false,
+			enableRemoteModule: true,
 			contextIsolation: true,
-			worldSafeExecuteJavaScript: true
-		}
+			preload: path.join(__dirname, "preload.js"),
+		},
 	});
 	process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
 
@@ -22,7 +25,7 @@ const createWindow = () => {
 			: url.format({
 					pathname: path.join(__dirname, "../index.html"),
 					protocol: "file:",
-					slashes: true
+					slashes: true,
 			  })
 	);
 

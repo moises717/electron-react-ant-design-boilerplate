@@ -1,65 +1,234 @@
-import { Layout, Menu, Breadcrumb } from "antd";
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { Layout, Menu, Table, Typography, Affix } from "antd";
+import {
+	MenuUnfoldOutlined,
+	MenuFoldOutlined,
+	OrderedListOutlined,
+	VideoCameraOutlined,
+	UploadOutlined,
+} from "@ant-design/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faBarcode,
+	faMinusCircle,
+	faTimes,
+	faWindowMaximize,
+	faWindowRestore,
+} from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Header, Sider, Content } = Layout;
 
 const App = () => {
+	const [collapse, setCollapse] = useState(false);
+
+	const toggle = () => {
+		setCollapse(!collapse);
+	};
+
+	const dataSource = [
+		{
+			key: "1",
+			name: "Mike",
+			age: 32,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+		{
+			key: "2",
+			name: "John",
+			age: 42,
+			address: "10 Downing Street",
+		},
+	];
+
+	const columns = [
+		{
+			title: "ESTACION",
+			dataIndex: "name",
+			key: "name",
+		},
+		{
+			title: "MODELO",
+			dataIndex: "age",
+			key: "age",
+		},
+		{
+			title: "ESTADO",
+			dataIndex: "address",
+			key: "address",
+		},
+	];
+
 	return (
-		<Layout style={{ height: "100vh" }}>
-			<Header className="header">
-				<div className="logo" />
-				<Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-					<Menu.Item key="1">nav 1</Menu.Item>
-					<Menu.Item key="2">nav 2</Menu.Item>
-					<Menu.Item key="3">nav 3</Menu.Item>
+		<Layout>
+			<Sider
+				trigger={null}
+				style={{
+					height: "100vh",
+				}}
+				collapsible
+				collapsed={collapse}
+				className="site-layout-background">
+				<div className="logo">
+					<b>
+						{!collapse && <span>MMS</span>} <FontAwesomeIcon icon={faBarcode} />
+					</b>
+				</div>
+				<Menu
+					theme="light"
+					mode="inline"
+					defaultSelectedKeys={["1"]}
+					className="site-layout-background">
+					<Menu.Item key="1" icon={<OrderedListOutlined />}>
+						LISTA DE ESCANEOS
+					</Menu.Item>
+					<Menu.Item key="2" icon={<VideoCameraOutlined />}>
+						nav 2
+					</Menu.Item>
+					<Menu.Item key="3" icon={<UploadOutlined />}>
+						nav 3
+					</Menu.Item>
 				</Menu>
-			</Header>
+			</Sider>
 			<Layout>
-				<Sider width={200} className="site-layout-background">
-					<Menu
-						mode="inline"
-						defaultSelectedKeys={["1"]}
-						defaultOpenKeys={["sub1"]}
-						style={{ height: "100%", borderRight: 0 }}>
-						<SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-							<Menu.Item key="1">option1</Menu.Item>
-							<Menu.Item key="2">option2</Menu.Item>
-							<Menu.Item key="3">option3</Menu.Item>
-							<Menu.Item key="4">option4</Menu.Item>
-						</SubMenu>
-						<SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
-							<Menu.Item key="5">option5</Menu.Item>
-							<Menu.Item key="6">option6</Menu.Item>
-							<Menu.Item key="7">option7</Menu.Item>
-							<Menu.Item key="8">option8</Menu.Item>
-						</SubMenu>
-						<SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-							<Menu.Item key="9">option9</Menu.Item>
-							<Menu.Item key="10">option10</Menu.Item>
-							<Menu.Item key="11">option11</Menu.Item>
-							<Menu.Item key="12">option12</Menu.Item>
-						</SubMenu>
-					</Menu>
-				</Sider>
-				<Layout style={{ padding: "0 24px 24px" }}>
-					<Breadcrumb style={{ margin: "16px 0" }}>
-						<Breadcrumb.Item>Home</Breadcrumb.Item>
-						<Breadcrumb.Item>List</Breadcrumb.Item>
-						<Breadcrumb.Item>App</Breadcrumb.Item>
-					</Breadcrumb>
-					<Content
-						className="site-layout-background"
-						style={{
-							padding: 24,
-							margin: 0,
-							minHeight: 280
-						}}>
-						Content
-					</Content>
-				</Layout>
+				<Affix offsetTop={0}>
+					<Header className="header-template">
+						{collapse ? (
+							<MenuUnfoldOutlined
+								className="trigger"
+								onClick={() => toggle()}
+							/>
+						) : (
+							<MenuFoldOutlined className="trigger" onClick={() => toggle()} />
+						)}
+
+						<div className="header-template__content-header">
+							<div className="content-header__left-content draggable">
+								<Typography.Title level={5} className="left-content__title">
+									MONTAJE DE ESTACIONES
+								</Typography.Title>
+							</div>
+							<div className="content-header__header-bottoms">
+								<FontAwesomeIcon
+									className="header-bottoms__icons"
+									icon={faMinusCircle}
+									onClick={() => window.electronApi.minimizeApp()}
+								/>
+								<FontAwesomeIcon
+									className="header-bottoms__icons"
+									icon={faWindowMaximize}
+									onClick={() => window.electronApi.maxUnmaxWindow()}
+								/>
+								<FontAwesomeIcon
+									className="header-bottoms__icons"
+									icon={faTimes}
+									onClick={() => window.electronApi.closeApp()}
+								/>
+							</div>
+						</div>
+					</Header>
+				</Affix>
+				<Content
+					className="site-layout-background"
+					style={{
+						margin: "24px 16px",
+						padding: 24,
+						height: 280,
+						overflow: "auto",
+					}}>
+					<Table dataSource={dataSource} columns={columns} />
+				</Content>
 			</Layout>
 		</Layout>
 	);
